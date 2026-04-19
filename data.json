@@ -6,7 +6,6 @@
   "ferry_wait": "~10 min",
   "contact_phone": "+91 98765 43210",
   "contact_email": "stay@tidesongbakkhali.com",
-  "weather_api_key": "b189d259f9b00775ff934f4d355ff161",
   "rooms": [
     {
       "name": "Mangrove Suite",
