@@ -632,6 +632,21 @@
   </div>
 </footer>
 
+<!-- Netlify Identity Widget (REQUIRED for invite flow) -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+<!-- Netlify Identity Script (for admin redirect) -->
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 <!-- Main Dynamic Script -->
 <script>
   (function() {
@@ -750,20 +765,5 @@
   })();
 </script>
 
-<!-- Netlify Identity Widget (REQUIRED for invite flow) -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-<!-- Netlify Identity Script (for admin redirect) -->
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
 </body>
 </html>
