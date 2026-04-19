@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>Tidesong Retreat · Bakkhali | Sundarbans Delta Resort</title>
+  <!-- SEO Meta (editable later via CMS) -->
+  <meta name="description" content="Modern resort in Bakkhali, West Bengal with direct beach access. Fresh seafood, stargazing, and Sundarbans day trips.">
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -187,7 +189,7 @@
       color: var(--ocean-deep);
     }
 
-    /* Tide Alert Widget (Floating) */
+    /* Tide Alert Widget */
     .tide-widget {
       background: rgba(0, 30, 35, 0.8);
       backdrop-filter: blur(12px);
@@ -228,7 +230,7 @@
       font-weight: bold;
     }
 
-    /* Section general */
+    /* Sections */
     section {
       padding: 80px 0;
     }
@@ -248,13 +250,11 @@
       gap: 60px;
       align-items: center;
     }
-
     .exp-text p {
       font-size: 1.2rem;
       margin-bottom: 24px;
       color: #2c3e3f;
     }
-
     .exp-features {
       display: flex;
       gap: 20px;
@@ -272,8 +272,6 @@
       color: var(--sundari-green);
       margin-bottom: 12px;
     }
-
-    /* Image placeholder styling (for demo) */
     .image-placeholder {
       background: #cbd5d9;
       border-radius: 40px;
@@ -285,11 +283,7 @@
       border: 4px solid white;
     }
 
-    .img-mangrove {
-      background-image: url('https://images.pexels.com/photos/247600/pexels-photo-247600.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
-    }
-
-    /* Rooms Cards */
+    /* Rooms */
     .rooms-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -340,7 +334,7 @@
       color: white;
     }
 
-    /* Menu Highlight */
+    /* Menu Section */
     .menu-section {
       background: var(--dune-sand);
       border-radius: 60px 60px 0 0;
@@ -414,6 +408,8 @@
       cursor: pointer;
       box-shadow: var(--shadow-soft);
       flex: 0 0 auto;
+      text-decoration: none;
+      display: inline-block;
     }
 
     /* Footer */
@@ -434,10 +430,26 @@
       font-family: 'Cormorant', serif;
       margin-bottom: 20px;
     }
-    .footer a {
+    footer a {
       color: #bcd4d9;
       text-decoration: none;
     }
+
+    /* Loading spinner (hidden by default) */
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(0,95,115,0.2);
+      border-top-color: var(--ocean-deep);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -476,7 +488,7 @@
 <div class="container">
   <div class="navbar">
     <div class="logo">
-      <i class="fas fa-water"></i> Tidesong · Bakkhali
+      <i class="fas fa-water"></i> <span id="site-name">Tidesong · Bakkhali</span>
     </div>
     <div class="nav-links">
       <a href="#stay">Stay</a>
@@ -491,18 +503,18 @@
 <div class="hero">
   <div class="container hero-content">
     <span class="hero-badge"><i class="fas fa-map-pin"></i> Bakkhali · West Bengal · Sundarbans Edge</span>
-    <h1>Where the delta<br>meets the sea.</h1>
-    <p>A modern sanctuary between mangroves and Bay of Bengal — just 3.5 hours from Kolkata.</p>
+    <h1 id="hero-title">Where the delta<br>meets the sea.</h1>
+    <p id="hero-subtitle">A modern sanctuary between mangroves and Bay of Bengal — just 3.5 hours from Kolkata.</p>
     <div class="hero-cta">
       <a href="#book" class="btn-primary">Check availability</a>
       <a href="#experience" class="btn-outline-light">Discover Bakkhali</a>
     </div>
-    <!-- Live Tide Widget -->
+    <!-- Live Tide Widget (dynamic content will replace inner text) -->
     <div class="tide-widget">
       <div class="tide-title"><i class="fas fa-ship"></i> Live Ferry & Tide · Namkhana</div>
       <div class="tide-info">
-        <div class="tide-item"><i class="fas fa-clock"></i> Next High Tide: <strong>14:20</strong> <span class="live-badge">LIVE</span></div>
-        <div class="tide-item"><i class="fas fa-water"></i> Ferry Wait: <strong>~10 min</strong></div>
+        <div class="tide-item"><i class="fas fa-clock"></i> Next High Tide: <strong id="tide-time">14:20</strong> <span class="live-badge">LIVE</span></div>
+        <div class="tide-item"><i class="fas fa-water"></i> Ferry Wait: <strong id="ferry-wait">~10 min</strong></div>
         <div class="tide-item"><i class="fas fa-car-side"></i> Road: Clear</div>
       </div>
       <div style="font-size:0.85rem; margin-top:12px;"><i class="fas fa-info-circle"></i> Recommended departure from Kolkata: before 11 AM</div>
@@ -522,12 +534,12 @@
           <div class="feature-card">
             <i class="fas fa-tree"></i>
             <h4>Sundarbans Proximity</h4>
-            <p style="font-size:0.95rem;">Day trips to Sajnekhali with our licensed boats. Download guide at concierge.</p>
+            <p>Day trips to Sajnekhali with our licensed boats. Download guide at concierge.</p>
           </div>
           <div class="feature-card">
             <i class="fas fa-star"></i>
             <h4>Stargazing Nights</h4>
-            <p style="font-size:0.95rem;">Pool lights off at 10pm. Milky Way visible on clear nights.</p>
+            <p>Pool lights off at 10pm. Milky Way visible on clear nights.</p>
           </div>
         </div>
       </div>
@@ -541,56 +553,20 @@
   <div class="container">
     <span class="section-subhead">Accommodation</span>
     <h2>Rooms with a delta view.</h2>
-    <div class="rooms-grid">
-      <div class="room-card">
-        <div class="room-img" style="background-image: url('https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"></div>
-        <div class="room-details">
-          <h3>Mangrove Suite</h3>
-          <p>King bed, private balcony overlooking the creek.</p>
-          <div class="price">₹7,500 <span style="font-size:0.9rem; font-weight:400;">/ night</span></div>
-          <a href="#book" class="btn-small">Reserve →</a>
-        </div>
-      </div>
-      <div class="room-card">
-        <div class="room-img" style="background-image: url('https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"></div>
-        <div class="room-details">
-          <h3>Ocean Terrace</h3>
-          <p>Direct beach access, spacious deck, outdoor shower.</p>
-          <div class="price">₹9,200 <span style="font-size:0.9rem; font-weight:400;">/ night</span></div>
-          <a href="#book" class="btn-small">Reserve →</a>
-        </div>
-      </div>
-      <div class="room-card">
-        <div class="room-img" style="background-image: url('https://images.pexels.com/photos/90317/pexels-photo-90317.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"></div>
-        <div class="room-details">
-          <h3>Garden Cottage</h3>
-          <p>Two queen beds, perfect for families, garden access.</p>
-          <div class="price">₹6,200 <span style="font-size:0.9rem; font-weight:400;">/ night</span></div>
-          <a href="#book" class="btn-small">Reserve →</a>
-        </div>
-      </div>
+    <div id="rooms-container" class="rooms-grid">
+      <!-- Static fallback (will be replaced by JS) -->
+      <div class="loading-spinner"><div class="spinner"></div></div>
     </div>
   </div>
 </section>
 
-<!-- Dining / Bakkhali Menu -->
+<!-- Dining Section -->
 <section id="dining" class="menu-section">
   <div class="container">
     <span class="section-subhead">Bengal on a Plate</span>
     <h2 style="color:#1e3a3f;">Fresh from Frasergunj jetty.</h2>
-    <div class="menu-highlight">
-      <div class="menu-item">
-        <h4>Bhetki Paturi</h4>
-        <p class="menu-desc">Local Bhetki marinated in mustard, steamed in banana leaf.</p>
-      </div>
-      <div class="menu-item">
-        <h4>Chingri Malai Curry</h4>
-        <p class="menu-desc">Golda chingri from the delta, coconut milk, whole spices.</p>
-      </div>
-      <div class="menu-item">
-        <h4>Gondhoraj Ghol</h4>
-        <p class="menu-desc">Buttermilk scented with Gondhoraj lime — a Bengal signature.</p>
-      </div>
+    <div id="menu-container" class="menu-highlight">
+      <div class="loading-spinner"><div class="spinner"></div></div>
     </div>
     <p style="margin-top:24px; text-align:right;"><a href="#" style="color:var(--ocean-deep); font-weight:600;">View full menu <i class="fas fa-arrow-right"></i></a></p>
   </div>
@@ -620,7 +596,7 @@
             <option>2 Adults, 2 Children</option>
           </select>
         </div>
-        <button class="btn-book-large"><i class="fas fa-calendar-check"></i> Check Availability</button>
+        <a href="#" class="btn-book-large" id="whatsapp-book-btn"><i class="fas fa-calendar-check"></i> Book via WhatsApp</a>
       </div>
       <p style="margin-top:24px; font-size:0.9rem; opacity:0.7;"><i class="fas fa-shield-alt"></i> Free cancellation up to 7 days. Tide-friendly check-in reminders.</p>
     </div>
@@ -632,9 +608,9 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-logo"><i class="fas fa-water"></i> Tidesong</div>
-        <p style="max-width:300px;">Bakkhali · Frasergunj Coastal Road<br>West Bengal 743374, India</p>
-        <p style="margin-top:20px;"><i class="fas fa-phone-alt"></i> +91 98765 43210<br><i class="fas fa-envelope"></i> stay@tidesongbakkhali.com</p>
+        <div class="footer-logo"><i class="fas fa-water"></i> <span id="footer-site-name">Tidesong</span></div>
+        <p>Bakkhali · Frasergunj Coastal Road<br>West Bengal 743374, India</p>
+        <p style="margin-top:20px;"><i class="fas fa-phone-alt"></i> <span id="contact-phone">+91 98765 43210</span><br><i class="fas fa-envelope"></i> <span id="contact-email">stay@tidesongbakkhali.com</span></p>
       </div>
       <div>
         <h4 style="color:white; margin-bottom:20px;">Explore</h4>
@@ -656,66 +632,135 @@
   </div>
 </footer>
 
-<!-- Simple JS for interactive elements (just demo) -->
+<!-- Main Dynamic Script -->
 <script>
   (function() {
-    // Make booking button interactive (demo alert)
-    const bookBtn = document.querySelector('.btn-book-large');
-    if(bookBtn) {
-      bookBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        alert('✨ Thank you for choosing Tidesong! This is a demo. In production, this would connect to a secure booking engine.\nFor Bakkhali, we recommend FareHarbor or Hotel-Spider.');
-      });
+    // Configuration - replace with actual WhatsApp number (include country code, no + or spaces)
+    const WHATSAPP_NUMBER = '919876543210'; // CHANGE THIS TO OWNER'S NUMBER
+
+    // Function to load and apply data from data.json
+    async function loadContent() {
+      try {
+        const response = await fetch('/data.json');
+        if (!response.ok) throw new Error('Data file not found');
+        const data = await response.json();
+
+        // Update site name in header and footer
+        document.getElementById('site-name').textContent = data.site_name || 'Tidesong · Bakkhali';
+        document.getElementById('footer-site-name').textContent = data.site_name ? data.site_name.split('·')[0].trim() : 'Tidesong';
+
+        // Hero section
+        document.getElementById('hero-title').innerHTML = data.hero_title || 'Where the delta<br>meets the sea.';
+        document.getElementById('hero-subtitle').textContent = data.hero_subtitle || 'A modern sanctuary between mangroves and Bay of Bengal.';
+
+        // Tide widget
+        if (data.tide_time) {
+          document.getElementById('tide-time').textContent = data.tide_time;
+        }
+        if (data.ferry_wait) {
+          document.getElementById('ferry-wait').textContent = data.ferry_wait;
+        }
+
+        // Contact info (if present in data.json, else keep defaults)
+        if (data.contact_phone) {
+          document.getElementById('contact-phone').textContent = data.contact_phone;
+        }
+        if (data.contact_email) {
+          document.getElementById('contact-email').textContent = data.contact_email;
+        }
+
+        // Render Rooms
+        const roomsContainer = document.getElementById('rooms-container');
+        roomsContainer.innerHTML = '';
+        if (data.rooms && data.rooms.length > 0) {
+          data.rooms.forEach(room => {
+            const card = document.createElement('div');
+            card.className = 'room-card';
+            // Use image path from CMS, fallback to a default
+            const imgSrc = room.image || 'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=600';
+            card.innerHTML = `
+              <div class="room-img" style="background-image: url('${imgSrc}');"></div>
+              <div class="room-details">
+                <h3>${room.name || 'Suite'}</h3>
+                <p>${room.description || 'Beautiful room with modern amenities.'}</p>
+                <div class="price">₹${parseInt(room.price || 0).toLocaleString('en-IN')} <span style="font-size:0.9rem; font-weight:400;">/ night</span></div>
+                <a href="#book" class="btn-small">Reserve →</a>
+              </div>
+            `;
+            roomsContainer.appendChild(card);
+          });
+        } else {
+          roomsContainer.innerHTML = '<p style="grid-column:1/-1; text-align:center;">No rooms available at the moment.</p>';
+        }
+
+        // Render Menu Highlights
+        const menuContainer = document.getElementById('menu-container');
+        menuContainer.innerHTML = '';
+        if (data.menu_highlights && data.menu_highlights.length > 0) {
+          data.menu_highlights.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.className = 'menu-item';
+            div.innerHTML = `
+              <h4>${item.name || 'Dish'}</h4>
+              <p class="menu-desc">${item.description || 'Delicious local preparation.'}</p>
+            `;
+            menuContainer.appendChild(div);
+          });
+        } else {
+          menuContainer.innerHTML = '<p style="width:100%; text-align:center;">Menu coming soon.</p>';
+        }
+
+        // Update WhatsApp link with pre-filled message
+        const bookBtn = document.getElementById('whatsapp-book-btn');
+        if (bookBtn) {
+          const message = encodeURIComponent(`Hello, I'm interested in booking a room at ${data.site_name || 'Tidesong'}. Please share availability.`);
+          bookBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+          bookBtn.target = '_blank';
+        }
+
+      } catch (error) {
+        console.error('Error loading content:', error);
+        // Show fallback message in containers if fetch fails
+        document.getElementById('rooms-container').innerHTML = '<p style="grid-column:1/-1; text-align:center;">Unable to load rooms. Please refresh.</p>';
+        document.getElementById('menu-container').innerHTML = '<p style="width:100%; text-align:center;">Menu temporarily unavailable.</p>';
+      }
     }
-    // Also small buttons
-    document.querySelectorAll('.btn-small').forEach(btn => {
+
+    // Start loading content
+    loadContent();
+
+    // Make booking buttons scroll to booking section
+    document.querySelectorAll('.btn-small, .btn-primary, .book-now-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        document.querySelector('#book').scrollIntoView({ behavior: 'smooth' });
+        if (btn.getAttribute('href') === '#book') {
+          e.preventDefault();
+          document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+        }
       });
     });
-    // Live tide simulation (fake update)
-    console.log('🌊 Tidesong Bakkhali — Ferry widget ready');
+
+    // Manual override for booking button if clicked before href update
+    document.getElementById('whatsapp-book-btn').addEventListener('click', function(e) {
+      if (!this.href || this.href === '#' || this.href.endsWith('#')) {
+        e.preventDefault();
+        alert('Booking system initializing. Please try again in a moment.');
+      }
+    });
+
   })();
 </script>
 
+<!-- Netlify Identity Script (for admin redirect) -->
 <script>
-  // Fetch the content managed by Decap CMS
-  fetch('/data.json')
-    .then(response => response.json())
-    .then(data => {
-      // Update Hero
-      document.querySelector('.logo').innerHTML = `<i class="fas fa-water"></i> ${data.site_name.split('·')[0].trim()}`;
-      document.querySelector('.hero h1').innerHTML = data.hero_title;
-      document.querySelector('.hero p').textContent = data.hero_subtitle;
-      document.querySelector('.tide-item strong').textContent = data.tide_time;
-
-      // Update Rooms (you will need to clear the existing static HTML and rebuild)
-      const roomsContainer = document.querySelector('.rooms-grid');
-      roomsContainer.innerHTML = ''; // Clear static
-      data.rooms.forEach(room => {
-        const card = document.createElement('div');
-        card.className = 'room-card';
-        card.innerHTML = `
-          <div class="room-img" style="background-image: url('${room.image}');"></div>
-          <div class="room-details">
-            <h3>${room.name}</h3>
-            <p>${room.description}</p>
-            <div class="price">₹${parseInt(room.price).toLocaleString('en-IN')} <span>/ night</span></div>
-            <a href="#book" class="btn-small">Reserve →</a>
-          </div>
-        `;
-        roomsContainer.appendChild(card);
-      });
-
-      // Update Menu Highlights similarly
-      const menuContainer = document.querySelector('.menu-highlight');
-      menuContainer.innerHTML = '';
-      data.menu_highlights.forEach(item => {
-        // build menu items
-      });
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
     });
+  }
 </script>
-
 </body>
 </html>
