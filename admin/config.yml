@@ -1,0 +1,36 @@
+backend:
+  name: git-gateway
+  branch: main # or master
+
+media_folder: "images/uploads" # Where uploaded images go
+public_folder: "/images/uploads"
+
+collections:
+  - name: "site_settings"
+    label: "Site Settings"
+    files:
+      - file: "data.json"
+        label: "General Info"
+        name: "general"
+        fields:
+          - {label: "Site Name", name: "site_name", widget: "string"}
+          - {label: "Hero Title", name: "hero_title", widget: "string"}
+          - {label: "Hero Subtitle", name: "hero_subtitle", widget: "text"}
+          - {label: "Tide Time (High)", name: "tide_time", widget: "string"}
+          - {label: "Ferry Wait", name: "ferry_wait", widget: "string"}
+  - name: "rooms"
+    label: "Rooms"
+    folder: "content/rooms"
+    create: true
+    fields:
+      - {label: "Room Name", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Price (INR)", name: "price", widget: "number", value_type: "int"}
+      - {label: "Image", name: "image", widget: "image"}
+  - name: "menu_items"
+    label: "Menu Items"
+    folder: "content/menu"
+    create: true
+    fields:
+      - {label: "Dish Name", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}

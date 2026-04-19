@@ -1,0 +1,41 @@
+{
+  "site_name": "Tidesong Retreat · Bakkhali",
+  "hero_title": "Where the delta meets the sea.",
+  "hero_subtitle": "A modern sanctuary between mangroves and Bay of Bengal — just 3.5 hours from Kolkata.",
+  "tide_time": "14:20",
+  "ferry_wait": "~10 min",
+  "rooms": [
+    {
+      "name": "Mangrove Suite",
+      "description": "King bed, private balcony overlooking the creek.",
+      "price": "7500",
+      "image": "images/mangrove-suite.jpg"
+    },
+    {
+      "name": "Ocean Terrace",
+      "description": "Direct beach access, spacious deck, outdoor shower.",
+      "price": "9200",
+      "image": "images/ocean-terrace.jpg"
+    },
+    {
+      "name": "Garden Cottage",
+      "description": "Two queen beds, perfect for families.",
+      "price": "6200",
+      "image": "images/garden-cottage.jpg"
+    }
+  ],
+  "menu_highlights": [
+    {
+      "name": "Bhetki Paturi",
+      "description": "Local Bhetki marinated in mustard, steamed in banana leaf."
+    },
+    {
+      "name": "Chingri Malai Curry",
+      "description": "Golda chingri from the delta, coconut milk, whole spices."
+    },
+    {
+      "name": "Gondhoraj Ghol",
+      "description": "Buttermilk scented with Gondhoraj lime."
+    }
+  ]
+}
