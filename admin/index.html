@@ -4,36 +4,37 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager | Bakkhali Resort</title>
-  <!-- Include Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <!-- Netlify Identity Widget (required for auth) -->
+
+  <!-- Netlify Identity Widget - load early -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <style>
-    /* Optional: Customize the login screen to match your brand */
-    .nc-githubAuthenticationPage-root {
-      background: linear-gradient(145deg, #005F73, #0A9396) !important;
-    }
-  </style>
 </head>
 <body>
-  <!-- THIS DIV IS CRITICAL - The CMS mounts here -->
+  <!-- This div is where the CMS React app mounts -->
   <div id="nc-root"></div>
 
-  <script>
-    // Initialize Netlify Identity
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-      window.netlifyIdentity.init();
-    }
+  <!-- Decap CMS script -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
-    // Register the CMS Preview Style (optional, but prevents FOUC)
-    CMS.registerPreviewStyle("/css/style.css");
+  <script>
+    // Wait for DOM and CMS to be ready
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Netlify Identity
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", function(user) {
+          if (!user) {
+            window.netlifyIdentity.on("login", function() {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+        window.netlifyIdentity.init();
+      }
+
+      // Only register preview styles if CMS object exists
+      if (typeof CMS !== 'undefined') {
+        CMS.registerPreviewStyle("/css/style.css");
+      }
+    });
   </script>
 </body>
 </html>
