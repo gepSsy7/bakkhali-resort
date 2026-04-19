@@ -451,6 +451,49 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
+    .weather-widget {
+      background: rgba(0, 30, 35, 0.8);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      padding: 20px 24px;
+      margin-top: 48px;
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      max-width: 500px;
+    }
+    .weather-title {
+      font-weight: 600;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .weather-details {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .weather-temp {
+      font-size: 2.8rem;
+      font-weight: 300;
+      line-height: 1;
+    }
+    .weather-desc {
+      text-transform: capitalize;
+    }
+    .weather-extra {
+      display: flex;
+      gap: 20px;
+      margin-top: 12px;
+      font-size: 0.9rem;
+    }
+    .weather-extra i {
+      width: 20px;
+      color: #9CD8E0;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .navbar {
@@ -509,15 +552,12 @@
       <a href="#book" class="btn-primary">Check availability</a>
       <a href="#experience" class="btn-outline-light">Discover Bakkhali</a>
     </div>
-    <!-- Live Tide Widget (dynamic content will replace inner text) -->
-    <div class="tide-widget">
-      <div class="tide-title"><i class="fas fa-ship"></i> Live Ferry & Tide · Namkhana</div>
-      <div class="tide-info">
-        <div class="tide-item"><i class="fas fa-clock"></i> Next High Tide: <strong id="tide-time">14:20</strong> <span class="live-badge">LIVE</span></div>
-        <div class="tide-item"><i class="fas fa-water"></i> Ferry Wait: <strong id="ferry-wait">~10 min</strong></div>
-        <div class="tide-item"><i class="fas fa-car-side"></i> Road: Clear</div>
+    <!-- Live Weather Widget -->
+    <div class="weather-widget">
+      <div class="weather-title"><i class="fas fa-cloud-sun"></i> Bakkhali Weather</div>
+      <div class="weather-info" id="weather-container">
+        <div class="loading-spinner"><div class="spinner"></div></div>
       </div>
-      <div style="font-size:0.85rem; margin-top:12px;"><i class="fas fa-info-circle"></i> Recommended departure from Kolkata: before 11 AM</div>
     </div>
   </div>
 </div>
@@ -743,6 +783,45 @@
 
     // Start loading content
     loadContent();
+
+    // Weather fetch function
+    async function loadWeather() {
+      const data = await fetch('/data.json').then(r => r.json());
+      const API_KEY = data.weather_api_key || 'YOUR_FALLBACK_KEY';
+      const LAT = '21.5639';   // Bakkhali coordinates
+      const LON = '88.2612';
+      const container = document.getElementById('weather-container');
+
+      try {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&units=metric&appid=${API_KEY}`);
+        if (!response.ok) throw new Error('Weather fetch failed');
+        const data = await response.json();
+
+        const iconCode = data.weather[0].icon;
+        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+
+        container.innerHTML = `
+          <div class="weather-details">
+            <img src="${iconUrl}" alt="${data.weather[0].description}" style="width:70px; height:70px;">
+            <div>
+              <div class="weather-temp">${Math.round(data.main.temp)}°C</div>
+              <div class="weather-desc">${data.weather[0].description}</div>
+            </div>
+          </div>
+          <div class="weather-extra">
+            <div><i class="fas fa-tint"></i> ${data.main.humidity}%</div>
+            <div><i class="fas fa-wind"></i> ${Math.round(data.wind.speed * 3.6)} km/h</div>
+            <div><i class="fas fa-sun"></i> ${new Date(data.sys.sunrise * 1000).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</div>
+          </div>
+        `;
+      } catch (error) {
+        console.error('Weather error:', error);
+        container.innerHTML = `<p style="color:white;"><i class="fas fa-exclamation-triangle"></i> Weather data temporarily unavailable</p>`;
+      }
+    }
+
+    // Call it after page load
+    document.addEventListener('DOMContentLoaded', loadWeather);
 
     // Make booking buttons scroll to booking section
     document.querySelectorAll('.btn-small, .btn-primary, .book-now-btn').forEach(btn => {

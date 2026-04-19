@@ -20,6 +20,7 @@ collections:
           - {label: "Ferry Wait (e.g., ~10 min)", name: "ferry_wait", widget: "string"}
           - {label: "Contact Phone", name: "contact_phone", widget: "string", required: false}
           - {label: "Contact Email", name: "contact_email", widget: "string", required: false}
+          - { label: "OpenWeather API Key", name: "weather_api_key", widget: "string", required: false }
           - label: "Rooms"
             name: "rooms"
             widget: "list"
