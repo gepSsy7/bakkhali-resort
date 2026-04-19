@@ -1,11 +1,8 @@
 {
   "site_name": "Tidesong Retreat · Bakkhali",
-  "hero_title": "Where the delta<br>meets the sea.",
-  "hero_subtitle": "A modern sanctuary between mangroves and Bay of Bengal — just 3.5 hours from Kolkata.",
-  "tide_time": "14:20",
-  "ferry_wait": "~10 min",
   "contact_phone": "+91 98765 43210",
-  "contact_email": "stay@tidesongbakkhali.com",
+  "hero_title": "Where the delta<br>meets the sea.",
+  "tide_time": "14:20",
   "rooms": [
     {
       "name": "Mangrove Suite",
@@ -24,8 +21,17 @@
       "description": "Two queen beds, perfect for families.",
       "price": 6200,
       "image": "https://images.pexels.com/photos/90317/pexels-photo-90317.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "name": "Delux 3bed",
+      "description": "cx",
+      "price": 3000,
+      "image": "/images/uploads/superdeluxewithac.jpg"
     }
   ],
+  "ferry_wait": "~10 min",
+  "hero_subtitle": "A modern sanctuary between mangroves and Bay of Bengal — just 3.5 hours from Kolkata.",
+  "contact_email": "stay@tidesongbakkhali.com",
   "menu_highlights": [
     {
       "name": "Bhetki Paturi",
