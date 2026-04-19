@@ -1,36 +1,36 @@
 backend:
   name: git-gateway
-  branch: main # or master
+  branch: main
 
-media_folder: "images/uploads" # Where uploaded images go
+media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "site_settings"
+  - name: "settings"
     label: "Site Settings"
     files:
       - file: "data.json"
-        label: "General Info"
+        label: "General"
         name: "general"
         fields:
           - {label: "Site Name", name: "site_name", widget: "string"}
           - {label: "Hero Title", name: "hero_title", widget: "string"}
           - {label: "Hero Subtitle", name: "hero_subtitle", widget: "text"}
-          - {label: "Tide Time (High)", name: "tide_time", widget: "string"}
-          - {label: "Ferry Wait", name: "ferry_wait", widget: "string"}
-  - name: "rooms"
-    label: "Rooms"
-    folder: "content/rooms"
-    create: true
-    fields:
-      - {label: "Room Name", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Price (INR)", name: "price", widget: "number", value_type: "int"}
-      - {label: "Image", name: "image", widget: "image"}
-  - name: "menu_items"
-    label: "Menu Items"
-    folder: "content/menu"
-    create: true
-    fields:
-      - {label: "Dish Name", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "text"}
+          - {label: "High Tide Time (e.g., 14:20)", name: "tide_time", widget: "string"}
+          - {label: "Ferry Wait (e.g., ~10 min)", name: "ferry_wait", widget: "string"}
+          - {label: "Contact Phone", name: "contact_phone", widget: "string", required: false}
+          - {label: "Contact Email", name: "contact_email", widget: "string", required: false}
+          - label: "Rooms"
+            name: "rooms"
+            widget: "list"
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "Price (INR)", name: "price", widget: "number", value_type: "int"}
+              - {label: "Image", name: "image", widget: "image", required: false}
+          - label: "Menu Highlights"
+            name: "menu_highlights"
+            widget: "list"
+            fields:
+              - {label: "Dish Name", name: "name", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}

@@ -4,21 +4,36 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager | Bakkhali Resort</title>
+  <!-- Include Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- Netlify Identity Widget (required for auth) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    /* Optional: Customize the login screen to match your brand */
+    .nc-githubAuthenticationPage-root {
+      background: linear-gradient(145deg, #005F73, #0A9396) !important;
+    }
+  </style>
 </head>
 <body>
-  <!-- This will render the CMS dashboard -->
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- THIS DIV IS CRITICAL - The CMS mounts here -->
+  <div id="nc-root"></div>
+
+  <script>
+    // Initialize Netlify Identity
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+      window.netlifyIdentity.init();
+    }
+
+    // Register the CMS Preview Style (optional, but prevents FOUC)
+    CMS.registerPreviewStyle("/css/style.css");
+  </script>
 </body>
 </html>
